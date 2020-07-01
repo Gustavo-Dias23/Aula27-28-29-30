@@ -9,10 +9,11 @@ namespace Aula27Excel
         {
             Produto p1 = new Produto();
             p1.Codigo = 1;
-            p1.Nome = "Squier";
-            p1.Preco = 4000f;
+            p1.Nome = "Tagima";
+            p1.Preco = 5500f;
 
             p1.Cadastrar(p1);
+            p1.Remover("Tagima");
 
             List<Produto> lista = p1.Ler();
 
