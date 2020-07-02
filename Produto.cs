@@ -48,6 +48,29 @@ namespace Aula27Excel
 
             return prod;
         }
+        /// <summary>
+        /// Altera um produto.
+        /// </summary>
+        public void Alterar(Produto _produtoAlterado){
+            List<string>  linhas = new List<string>();
+
+            using(StreamReader arquivo = new StreamReader(PATH)){
+                string linha;
+                while((linha = arquivo.ReadLine()) != null){
+                    linhas.Add(linha);
+                }
+            }
+            linhas.RemoveAll(z => z.Split(";")[0].Split("=")[1] == _produtoAlterado.Codigo.ToString());
+
+            linhas.Add( PrepararLinha(_produtoAlterado) );
+
+            using(StreamWriter output = new StreamWriter(PATH)){
+                foreach(string ln in linhas){
+                    output.Write(ln + "\n");
+                }
+            }
+
+        }
     
         public List<Produto> Filtrar(string _nome){
             return Ler().FindAll(x=> x.Nome == _nome);
